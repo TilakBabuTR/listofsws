@@ -6,6 +6,8 @@ import sys
 import sqlite3
 import texttable as tt
 from datetime import date
+import os
+print(os.getcwd())
 
 conn=sqlite3.connect('todo.db')
 c=conn.cursor()
