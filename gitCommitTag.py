@@ -45,11 +45,11 @@ def repo_tag(tag_version, tag_message, repo_directory):
 
 def main():
     repo_temppath = create_temp_directory('19072020')
-    print("Repo temporary Path",repo_temppath)
+    print("Repo temporary Path ----> "+repo_temppath)
     repo_name = 'infra-scripts'
     download_repo('https://github.com/tr/production-engineering_infrastructure-scripts.git', repo_name, repo_temppath)
     repo_directory = os.path.join(repo_temppath,repo_name)
-    repo_tag('initial_tag_version', 'initial_tag_message',repo_directory)
+    repo_tag('84a3a48', 'initial_tag_message',repo_directory)
 
 if __name__ == '__main__':
     main()
