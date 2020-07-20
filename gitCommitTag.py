@@ -4,6 +4,9 @@ from subprocess import call
 
 def create_temp_directory(reason):
     """ Creates a temporary directory and returns the path to it. """
+    current_dir = os.getcwd()
+    # change path accordingly - dir=current_dir
+    # check temp dir - C:\Users\uC264789\AppData\Local\Temp
     return tempfile.mkdtemp(prefix='temp-{0}-'.format(reason))
 
 def _invoke_cmd(args, **kwargs):
@@ -45,11 +48,14 @@ def repo_tag(tag_version, tag_message, repo_directory):
 
 def main():
     repo_temppath = create_temp_directory('19072020')
-    print("Repo temporary Path ----> "+repo_temppath)
+    print("Repo temporary Path changed ----> "+repo_temppath)
     repo_name = 'infra-scripts'
     download_repo('https://github.com/tr/production-engineering_infrastructure-scripts.git', repo_name, repo_temppath)
     repo_directory = os.path.join(repo_temppath,repo_name)
-    repo_tag('84a3a48', 'initial_tag_message',repo_directory)
+    # Get commit number and tag to repo-2
+    with open('git-commit.txt','r') as f:
+        tag_name = f.read()
+    repo_tag(tag_name, 'initial_tag_message',repo_directory)
 
 if __name__ == '__main__':
     main()
